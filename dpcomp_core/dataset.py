@@ -164,7 +164,8 @@ class DatasetFromFile(Dataset):
     def __init__(self, nickname, reduce_to_dom_shape=None):
         self.fname = nickname
         assert nickname in filenameDict, 'Filename parameter not recognized: %s' % nickname
-        hist = load(filenameDict[self.fname])
+        #hist = load(filenameDict[self.fname])
+        hist = load("/home/famien/Code/dpcomp_core/dpcomp_core/datafiles/1D/INCOME.n4096.npy")
         super(DatasetFromFile,self).__init__(hist, reduce_to_dom_shape, None)
 
 

@@ -35,6 +35,8 @@ w = workload.RandomRange(shape_list=shape_list,
 
 # Calculate noisy estimate for x
 x = d.payload
+
+print("x ", x)
 x_hat = a.Run(w, x, epsilon, seed)
 
 # Compute error between true x and noisy estimate
