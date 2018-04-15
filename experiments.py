@@ -8,9 +8,10 @@ def run_experiment(datasets, alg_engine, epsilons, seed, num_bins):
 	print("total runs: ", total_runs)
 	num_done = 0
 	experiment_results = []
-
-	for dataset in datasets:
+	for i in  in range(len(datasets)):
+		dataset = datasets[i]
 		if sum(dataset) == 0 or len(dataset) <= 2:
+			print("bad dataset")
 			continue # for some reason there are '0' data vectors
 			# also, for branching, length should be at least 3
 
@@ -27,10 +28,9 @@ def run_experiment(datasets, alg_engine, epsilons, seed, num_bins):
 
 			histogram, bin_size = algs.get_histogram(dataset, num_bins)
 			private_hist, bin_size = algs.get_histogram(dataset_hat, num_bins)
-
 			error = algs.get_scaled_error(histogram, private_hist)
 
-			experiment_results.append((scale, domain_size, error, data_range, std_dev, uniform_distance, epsilon))
+			experiment_results.append((scale, domain_size, error, data_range, std_dev, uniform_distance, epsilon, data_set_index, i))
 			num_done +=1
 			if num_done % 50 ==0 :
 				print("num done: ", num_done)
